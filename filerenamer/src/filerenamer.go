@@ -49,7 +49,9 @@ func renameFileName(filePath string, textToRemove string) (string, error) {
 	if contains == true {
 		log.Printf("File is beign renamed: %s", filePath)
 		replace := strings.Replace(filePath, textToRemove, "", 1)
-		newPath := strings.TrimSpace(replace)
+		extension:=filepath.Ext(replace)
+		withoutExtension:= strings.TrimSpace(strings.Replace(replace, extension, "", 1))
+		newPath := withoutExtension + extension
 		err := os.Rename(filePath, newPath)
 		return newPath, err
 	}

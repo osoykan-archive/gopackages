@@ -40,3 +40,13 @@ func TestGetFiles_Should_Return_Something(t *testing.T) {
 		t.Errorf("GetFiles should return files")
 	}
 }
+
+func TestRenameFileName_Should_Trim_Spaces(t *testing.T) {
+	fileName := "abc   "
+	textToRemove := "c"
+
+	got,_ := renameFileName(fileName, textToRemove)
+	if got != "ab" {
+		t.Errorf("RenameFileName(%s) = %s", fileName, "ab")
+	}
+}
