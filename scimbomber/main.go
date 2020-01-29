@@ -71,7 +71,7 @@ var (
 )
 
 func main() {
-	var wg sync.WaitGroup
+
 	profileCount := flag.Int("profile", 100, "Profiles count to be created")
 	flag.Parse()
 
@@ -82,6 +82,7 @@ func main() {
 	}
 	log.Printf("INFORMATION: %d profiles will be created", *profileCount)
 	start := time.Now()
+	var wg sync.WaitGroup
 	CreateProfiles(&wg, *profileCount)
 	wg.Wait()
 	elapsed := time.Since(start)
